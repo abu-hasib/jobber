@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Ridwan <ricklick262@gmail.com> (https://ridwanabiola.netlify.app/)",
+  "author": "Ridwan <ricklick262 at gmail.com> (https://ridwanabiola.netlify.app/)",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.0",
