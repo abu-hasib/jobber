@@ -20,13 +20,6 @@ app.use((req, res, next) => {
 app.use('/session', routes.session);
 app.use('/users', routes.user);
 app.use('/messages', routes.message);
-
-   
- 
-
-  app.post('/users', (req, res) => {
-    return res.send('POST HTTP method on user resource');
-  });
    
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`),
