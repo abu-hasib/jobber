@@ -1,28 +1,29 @@
-import { Router } from 'express';
- 
+import { Router } from "express";
+import AuthController from "../users/user.controller";
+
 const router = Router();
- 
-router.get('/', async (req, res) => {
+
+router.get("/", async (req, res) => {
   const users = await req.context.models.User.find();
   return res.send(users);
 });
- 
-router.get('/:userId', async (req, res) => {
-  const user = await req.context.models.User.findById(
-    req.params.userId,
-  );
+
+router.post("/signup", AuthController.Signup);
+
+router.get("/:userId", async (req, res) => {
+  const user = await req.context.models.User.findById(req.params.userId);
   return res.send(user);
 });
- 
-router.delete('/:userId', async(req, res) => {
-  const user = await req.context.models.User.findById(req.params.userId,)
 
-  console.log(user)
+router.delete("/:userId", async (req, res) => {
+  const user = await req.context.models.User.findById(req.params.userId);
 
-  if(user) {
-    await user.remove()
+  console.log(user);
+
+  if (user) {
+    await user.remove();
   }
-  return res.send(user)
-})
+  return res.send(user);
+});
 
 export default router;
