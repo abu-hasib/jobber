@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/signup", AuthController.Signup);
+router.post("/login", AuthController.Login);
 
 router.get("/:userId", async (req, res) => {
   const user = await req.context.models.User.findById(req.params.userId);
