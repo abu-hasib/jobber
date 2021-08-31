@@ -19,6 +19,8 @@ app.use(async (req, res, next) => {
 app.use("/session", routes.session);
 app.use("/users", routes.user);
 app.use("/messages", routes.message);
+app.use("/jobs", routes.job);
+app.use("/profile", routes.profile);
 
 const eraseDatabaseOnSync = true;
 
