@@ -43,6 +43,14 @@ userSchema.statics.hashPassword = async (password) => {
   }
 };
 
+userSchema.statics.comparePasswords = async (inputPassword, hashedPassword) => {
+  try {
+    return await bcrypt.compare(inputPassword, hashedPassword);
+  } catch (error) {
+    throw new Error("Comparison failed", error);
+  }
+};
+
 const User = mongoose.model("User", userSchema);
 
 export default User;
