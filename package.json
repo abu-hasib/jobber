@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel lib -d dist",
-    "start": "npm run build && nodemon dist/index.js",
-    "serve": "node dist/index.js",
-    "dev": "node --exec babel-node src/index.js --trace-warnings",
+    "dev": "babel-watch src/index.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js",
     "heroku-postbuild": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +23,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "babel-node": "0.0.1-security",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
