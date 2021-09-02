@@ -4,19 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js --trace-warnings",
+    "build": "babel lib -d dist",
+    "start": "npm run build && nodemon dist/index.js",
+    "serve": "node dist/index.js",
+    "dev": "node --exec babel-node src/index.js --trace-warnings",
+    "heroku-postbuild": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Ridwan <ricklick262 at gmail.com> (https://ridwanabiola.netlify.app/)",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "babel-node": "0.0.1-security",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
