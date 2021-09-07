@@ -8,7 +8,7 @@
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
-    "start": "npm run build && babel-node ./build/index.js",
+    "start": "npm run build && node ./build/index.js",
     "heroku-postbuild": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,13 +16,13 @@
   "author": "Ridwan <ricklick262 at gmail.com> (https://ridwanabiola.netlify.app/)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/node": "^7.14.9",
-    "@babel/preset-env": "^7.15.0",
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/cli": "^7.14.8",
     "@babel/polyfill": "^7.12.1",
     "babel-node": "0.0.1-security",
     "bcryptjs": "^2.4.3",
