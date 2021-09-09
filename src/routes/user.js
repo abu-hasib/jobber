@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticateToken } from "../helpers";
 import AuthController from "../users/user.controller";
 
 const router = Router();
@@ -9,7 +10,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/signup", AuthController.Signup);
-router.post("/login", AuthController.Login);
+router.post("/login", authenticateToken, AuthController.Login);
 
 router.get("/:userId", async (req, res) => {
   const user = await req.context.models.User.findById(req.params.userId);
@@ -25,6 +26,10 @@ router.delete("/:userId", async (req, res) => {
     await user.remove();
   }
   return res.send(user);
+});
+
+router.get("*", function (req, res) {
+  res.status(404).end();
 });
 
 export default router;
