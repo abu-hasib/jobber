@@ -1,5 +1,6 @@
 import Joi from "joi";
 import { v4 as uuid } from "uuid";
+import { generateAccessToken } from "../helpers";
 
 //Validate user schema
 const userSchema = Joi.object().keys({
@@ -8,7 +9,7 @@ const userSchema = Joi.object().keys({
   confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
 });
 
-exports.Signup = async (req, res) => {
+exports.Signup = async (req, res, next) => {
   const { User } = req.context.models;
   try {
     const result = userSchema.validate(req.body);
@@ -37,11 +38,16 @@ exports.Signup = async (req, res) => {
     delete result.value.confirmPassword;
     result.value.password = hash;
 
+    const token = generateAccessToken({ email: result.value.email });
+
+    result.value.token = token;
+
     const newUser = new User(result.value);
     await newUser.save();
     return res.status(200).json({
       success: true,
       message: "Registration Successful",
+      token,
     });
   } catch (error) {
     console.error("signup-error", error);
@@ -95,5 +101,3 @@ exports.Login = async (req, res) => {
     });
   }
 };
-
-
